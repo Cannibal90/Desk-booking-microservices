@@ -1,0 +1,21 @@
+POST  http://localhost:8989/order/bookOrder
+Accept: application/json
+Content-Type: application/json
+
+{
+  "order": {
+    "id": 102,
+    "name": "book1",
+    "qty": 13,
+    "price": 1000
+  },
+  "payment": {}
+}
+
+###
+
+GET http://localhost:10000/payment/567d9923-61d3-4be4-914f-fe7f5b1b0266
+Accept: application/json
+Content-Type: application/json
+
+###

@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/Cannibal90/TestConfigServer
+          uri: https://github.com/Cannibal90/Desk-booking-microservices
 
 server:
   port: 9196
