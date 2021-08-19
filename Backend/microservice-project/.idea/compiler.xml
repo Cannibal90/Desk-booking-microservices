@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="microservice-project" />
-        <module name="user-service" />
         <module name="cloud-config-server" />
-        <module name="discovery-service" />
         <module name="laboratory-room-service" />
         <module name="reservation-service" />
+        <module name="gateway-api" />
+        <module name="user-service" />
+        <module name="discovery-service" />
       </profile>
     </annotationProcessing>
   </component>
@@ -19,6 +20,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="cloud-config-server" options="-parameters" />
       <module name="discovery-service" options="-parameters" />
+      <module name="gateway-api" options="-parameters" />
       <module name="laboratory-room-service" options="-parameters" />
       <module name="reservation-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
