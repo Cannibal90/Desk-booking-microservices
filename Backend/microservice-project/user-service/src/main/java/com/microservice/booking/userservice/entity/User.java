@@ -1,10 +1,16 @@
 package com.microservice.booking.userservice.entity;
 
 import com.microservice.booking.userservice.domain.Role;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
 
     @Id

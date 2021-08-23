@@ -2,8 +2,14 @@ package com.microservice.booking.laboratoryroomservice.entity;
 
 import javax.persistence.*;
 import com.microservice.booking.laboratoryroomservice.entity.domain.NetworkType;
+import lombok.*;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ComputerStation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
