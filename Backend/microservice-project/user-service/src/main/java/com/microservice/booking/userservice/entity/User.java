@@ -22,7 +22,7 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private UserDetails userDetails;
 
 }

@@ -21,7 +21,7 @@ public class Desk {
     @Enumerated(value = EnumType.STRING)
     private DeskType deskType;
     //ILE PC
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name="desk_ID")
     private List<ComputerStation> computerStations = new ArrayList<>();
 

@@ -4,6 +4,8 @@ spring:
   h2:
     console:
       enabled: true
+  jpa:
+    show-sql: true
   application:
     name: LABORATORY-ROOM-SERVICE
 

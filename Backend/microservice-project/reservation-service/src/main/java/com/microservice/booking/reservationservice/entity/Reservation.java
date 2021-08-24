@@ -15,7 +15,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private Durration durration;
 
     private Long userId;

@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString
 public class ComputerStation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +20,8 @@ public class ComputerStation {
     private boolean microphone;
     private String operatingSystem;
     private String graphicCard;
-    private String CPU;
-    private int RAM;
+    private String cpu;
+    private int ram;
     private int drive;
     @Enumerated(value = EnumType.STRING)
     private NetworkType networkType;

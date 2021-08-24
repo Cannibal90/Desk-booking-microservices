@@ -19,7 +19,7 @@ public class LaboratoryRoom {
     private int floor;
     private String roomSupervisor;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name="LR_ID")
     private List<Desk> desks = new ArrayList<>();
 }
