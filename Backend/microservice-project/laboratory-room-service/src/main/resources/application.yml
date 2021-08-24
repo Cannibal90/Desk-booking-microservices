@@ -8,5 +8,3 @@ spring:
     show-sql: true
   application:
     name: LABORATORY-ROOM-SERVICE
-
-

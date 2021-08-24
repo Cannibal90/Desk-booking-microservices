@@ -1,16 +1,16 @@
-package com.microservice.booking.laboratoryroomservice.exception;
+package com.microservice.booking.laboratoryroomservice.dataTransferObjects;
 
 import lombok.Data;
 import java.time.LocalDateTime;
 
 
 @Data
-public class ExceptionDto {
+public class ExceptionDTO {
     private int status;
     private String message;
     private LocalDateTime timestamp;
 
-    public ExceptionDto(int status, String message) {
+    public ExceptionDTO(int status, String message) {
         this.status = status;
         this.message = message;
         this.timestamp = LocalDateTime.now();

@@ -14,7 +14,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8989/user/getUser
+GET http://localhost:8200/laboratory/room
 Accept: application/json
 Content-Type: application/json
 

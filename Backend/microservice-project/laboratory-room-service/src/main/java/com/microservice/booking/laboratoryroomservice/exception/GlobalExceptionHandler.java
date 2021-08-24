@@ -1,5 +1,6 @@
 package com.microservice.booking.laboratoryroomservice.exception;
 
+import com.microservice.booking.laboratoryroomservice.dataTransferObjects.ExceptionDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +14,22 @@ import com.projekt.cannibal.car_rent.exceptions.ApiForbiddenException;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionDto> onException(Exception exception) {
+    public ResponseEntity<ExceptionDTO> onException(Exception exception) {
         return createProperResponse(exception,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(ApiForbiddenException.class)
-    public ResponseEntity<ExceptionDto> onForbiddenException(Exception exception) {
+    public ResponseEntity<ExceptionDTO> onForbiddenException(Exception exception) {
         return createProperResponse(exception,HttpStatus.FORBIDDEN);
     }
 
-    private ResponseEntity<ExceptionDto> createProperResponse(Exception exception, HttpStatus status) {
+    @ExceptionHandler(ApiNoFoundResourceException.class)
+    public ResponseEntity<ExceptionDTO> onNotFoundException(Exception exception) {
+        return createProperResponse(exception,HttpStatus.NOT_FOUND);
+    }
+
+    private ResponseEntity<ExceptionDTO> createProperResponse(Exception exception, HttpStatus status) {
         exception.printStackTrace();
-        return ResponseEntity.status(status).body(new ExceptionDto(status.value(), exception.getMessage()));
+        return ResponseEntity.status(status).body(new ExceptionDTO(status.value(), exception.getMessage()));
     }
 }
