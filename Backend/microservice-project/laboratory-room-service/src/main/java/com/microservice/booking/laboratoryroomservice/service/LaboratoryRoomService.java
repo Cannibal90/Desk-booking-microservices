@@ -53,9 +53,26 @@ public class LaboratoryRoomService {
     public LaboratoryRoomResponseDTO createLaboratoryRoom(LaboratoryRoomRequestDTO laboratoryRoomRequestDTO){
         if(laboratoryRoomRequestDTO.getFloor() <= 0 || laboratoryRoomRequestDTO.getRoomSupervisor().isEmpty())
             throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
+
         var room = laboratoryRoomMapper.toDomain(laboratoryRoomRequestDTO);
         var savedRoom = laboratoryRoomRepository.save(room);
         return laboratoryRoomMapper.toLaboratoryRoomResponse(savedRoom);
+    }
+
+    public LaboratoryRoomResponseDTO updateLaboratoryRoom(LaboratoryRoomRequestDTO laboratoryRoomRequestDTO, Long id){
+        if(id <= 0)
+            throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
+
+        var room = laboratoryRoomRepository.findById(id);
+        if(room.isEmpty())
+            throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_ROOM);
+
+        var baseRoom = room.get();
+        var updatedRoom = laboratoryRoomMapper.toDomain(laboratoryRoomRequestDTO);
+        updatedRoom.setId(baseRoom.getId());
+        updatedRoom.setDesks(baseRoom.getDesks());
+
+        return laboratoryRoomMapper.toLaboratoryRoomResponse(laboratoryRoomRepository.save(updatedRoom));
     }
 
 }

@@ -32,10 +32,10 @@ public class LaboratoryRoomController {
         return ResponseEntity.status(HttpStatus.CREATED).body(laboratoryRoomService.createLaboratoryRoom(laboratoryRoomRequestDTO));
     }
 
-//    @PutMapping("/room/{id}")
-//    public ResponseEntity<LaboratoryRoomResponseDTO> updateRoomById(@PathVariable Long id, @RequestBody LaboratoryRoomRequestDTO laboratoryRoomRequestDTO){
-//
-//    }
+    @PutMapping("/room/{id}")
+    public ResponseEntity<LaboratoryRoomResponseDTO> updateRoomById(@PathVariable Long id, @RequestBody LaboratoryRoomRequestDTO laboratoryRoomRequestDTO){
+        return ResponseEntity.ok(laboratoryRoomService.updateLaboratoryRoom(laboratoryRoomRequestDTO,id));
+    }
 
     @DeleteMapping("/room/{id}")
     public ResponseEntity<?> deleteRoomById(@PathVariable Long id) {

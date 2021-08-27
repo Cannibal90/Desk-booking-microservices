@@ -41,6 +41,18 @@ Content-Type: application/json
 
 ###
 
+
+PUT http://localhost:8200/laboratory/room/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "floor": 3,
+  "roomSupervisor": "NOWY+UP"
+}
+
+###
+
 POST  http://localhost:8200/laboratory/computer_station
 Accept: application/json
 Content-Type: application/json
