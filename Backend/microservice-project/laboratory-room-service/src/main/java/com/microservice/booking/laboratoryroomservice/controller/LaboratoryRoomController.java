@@ -1,13 +1,12 @@
 package com.microservice.booking.laboratoryroomservice.controller;
 
+import com.microservice.booking.laboratoryroomservice.dataTransferObjects.LaboratoryRoomRequestDTO;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.LaboratoryRoomResponseDTO;
 import com.microservice.booking.laboratoryroomservice.service.LaboratoryRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +25,21 @@ public class LaboratoryRoomController {
     @GetMapping("/room/{id}")
     public ResponseEntity<LaboratoryRoomResponseDTO> getRoomById(@PathVariable Long id) {
         return ResponseEntity.ok(laboratoryRoomService.getRoomById(id));
+    }
+
+    @PostMapping("/room")
+    public ResponseEntity<LaboratoryRoomResponseDTO> createLaboratoryRoom(@RequestBody LaboratoryRoomRequestDTO laboratoryRoomRequestDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(laboratoryRoomService.createLaboratoryRoom(laboratoryRoomRequestDTO));
+    }
+
+//    @PutMapping("/room/{id}")
+//    public ResponseEntity<LaboratoryRoomResponseDTO> updateRoomById(@PathVariable Long id, @RequestBody LaboratoryRoomRequestDTO laboratoryRoomRequestDTO){
+//
+//    }
+
+    @DeleteMapping("/room/{id}")
+    public ResponseEntity<?> deleteRoomById(@PathVariable Long id) {
+        laboratoryRoomService.deleteLaboratoryRoom(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -22,4 +22,14 @@ public class LaboratoryRoom {
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name="LR_ID")
     private List<Desk> desks = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "LaboratoryRoom{" +
+                "id=" + id +
+                ", floor=" + floor +
+                ", roomSupervisor='" + roomSupervisor + '\'' +
+                ", desks=" + desks +
+                '}';
+    }
 }

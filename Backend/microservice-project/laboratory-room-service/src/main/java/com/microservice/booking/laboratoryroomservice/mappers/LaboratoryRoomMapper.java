@@ -1,6 +1,7 @@
 package com.microservice.booking.laboratoryroomservice.mappers;
 
 
+import com.microservice.booking.laboratoryroomservice.dataTransferObjects.LaboratoryRoomRequestDTO;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.LaboratoryRoomResponseDTO;
 import com.microservice.booking.laboratoryroomservice.entity.Desk;
 import com.microservice.booking.laboratoryroomservice.entity.LaboratoryRoom;
@@ -24,5 +25,14 @@ public interface LaboratoryRoomMapper {
 
     List<LaboratoryRoomResponseDTO> toLaboratoryRoomResponseList(List<LaboratoryRoom> laboratoryRooms);
 
+
+    default LaboratoryRoom toDomain(LaboratoryRoomRequestDTO laboratoryRoomRequestDTO){
+        if(laboratoryRoomRequestDTO == null)
+            return null;
+        LaboratoryRoom laboratoryRoom = new LaboratoryRoom();
+        laboratoryRoom.setFloor(laboratoryRoomRequestDTO.getFloor());
+        laboratoryRoom.setRoomSupervisor(laboratoryRoomRequestDTO.getRoomSupervisor());
+        return laboratoryRoom;
+    }
 
 }
