@@ -1,0 +1,50 @@
+server:
+  port: 8989
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: laboratory-service
+          uri: lb://LABORATORY-SERVICE
+          predicates:
+            - Path=/laboratory/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: laboratory-service
+                fallbackuri: forward:/laboratoryFallBack
+        - id: reservation-service
+          uri: lb://RESERVATION-SERVICE
+          predicates:
+            - Path=/reservation/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: reservation-service
+                fallbackuri: forward:/reservationFallBack
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: user-service
+                fallbackuri: forward:/userFallBack
+
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: histrix.stream
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 500
+
+

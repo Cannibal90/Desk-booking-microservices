@@ -1,0 +1,73 @@
+POST  http://localhost:8989/user/getUser
+Accept: application/json
+Content-Type: application/json
+
+{
+  "order": {
+    "id": 102,
+    "name": "book1",
+    "qty": 13,
+    "price": 1000
+  },
+  "payment": {}
+}
+
+###
+
+GET http://localhost:8200/laboratory/room
+Accept: application/json
+Content-Type: application/json
+
+###
+
+###
+
+DELETE http://localhost:8200/laboratory/room/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+###
+
+POST http://localhost:8200/laboratory/room
+Accept: application/json
+Content-Type: application/json
+
+{
+  "floor": 2,
+  "roomSupervisor": "NowakJan"
+}
+
+###
+
+
+PUT http://localhost:8200/laboratory/room/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "floor": 3,
+  "roomSupervisor": "NOWY+UP"
+}
+
+###
+
+POST  http://localhost:8200/laboratory/computer_station
+Accept: application/json
+Content-Type: application/json
+
+{
+  "monitors": 2,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "windows",
+  "graphicCard": "2gb",
+  "cpu": "INTEL",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI"
+
+}
+
+###
