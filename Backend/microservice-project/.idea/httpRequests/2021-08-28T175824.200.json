@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "floor": 1,
+    "roomSupervisor": "Kowalski",
+    "deskCount": 1
+  },
+  {
+    "id": 2,
+    "floor": 1,
+    "roomSupervisor": "Nowak",
+    "deskCount": 1
+  },
+  {
+    "id": 3,
+    "floor": 2,
+    "roomSupervisor": "Malinowski",
+    "deskCount": 1
+  }
+]

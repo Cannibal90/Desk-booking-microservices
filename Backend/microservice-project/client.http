@@ -42,6 +42,7 @@ Content-Type: application/json
 ###
 
 
+
 PUT http://localhost:8200/laboratory/room/2
 Accept: application/json
 Content-Type: application/json
@@ -53,21 +54,49 @@ Content-Type: application/json
 
 ###
 
+POST  http://localhost:8200/laboratory/desk
+Accept: application/json
+Content-Type: application/json
+
+{
+  "deskType": "NORMAL",
+  "roomId": 2
+}
+
+###
+
+PUT  http://localhost:8200/laboratory/desk/4
+Accept: application/json
+Content-Type: application/json
+
+{
+  "deskType": "NORMAL",
+  "roomId": 1
+}
+
+###
+
+DELETE  http://localhost:8200/laboratory/desk/4
+Accept: application/json
+Content-Type: application/json
+
+
+###
+
 POST  http://localhost:8200/laboratory/computer_station
 Accept: application/json
 Content-Type: application/json
 
 {
-  "monitors": 2,
-  "headphones": true,
-  "microphone": true,
-  "operatingSystem": "windows",
-  "graphicCard": "2gb",
-  "cpu": "INTEL",
-  "ram": 2,
-  "drive": 512,
-  "networkType": "WIFI"
-
+"monitors": 2,
+"headphones": true,
+"microphone": true,
+"operatingSystem": "windows",
+"graphicCard": "2gb",
+"cpu": "INTEL",
+"ram": 2,
+"drive": 512,
+"networkType": "WIFI"
 }
 
 ###

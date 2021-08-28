@@ -25,4 +25,5 @@ public class Desk {
     @JoinColumn(name="desk_ID")
     private List<ComputerStation> computerStations = new ArrayList<>();
 
+
 }
