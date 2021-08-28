@@ -16,9 +16,11 @@ public class ComputerStationController {
     @Autowired
     private ComputerStationService computerStationService;
 
-    @PostMapping("/computer_station")
-    public ComputerStation save(@RequestBody ComputerStation computerStation){
-    System.out.println("STATION: " + computerStation.toString());
-        return computerStationService.save(computerStation);
-    }
+    //TODO napisac funkcje i potestowac
+    //TODO rozpisac logike frontu dla dodawania i usuwania room/desk/computer
+//    @PostMapping("/computer_station")
+//    public ComputerStation save(@RequestBody ComputerStation computerStation){
+//    System.out.println("STATION: " + computerStation.toString());
+//        return computerStationService.save(computerStation);
+//    }
 }
