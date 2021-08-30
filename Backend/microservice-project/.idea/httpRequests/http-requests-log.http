@@ -1,3 +1,204 @@
+DELETE http://localhost:8200/laboratory/computer/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET http://localhost:8200/laboratory/computer
+Accept: application/json
+Content-Type: application/json
+
+<> 2021-08-30T215206.200.json
+
+###
+
+PUT http://localhost:8200/laboratory/computer/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "monitors": 1,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "Linux",
+  "graphicCard": "3gb",
+  "cpu": "AMD",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI",
+  "deskId": 4
+}
+
+<> 2021-08-30T215157.200.json
+
+###
+
+GET http://localhost:8200/laboratory/computer/desk/4
+Accept: application/json
+Content-Type: application/json
+
+<> 2021-08-30T215121.200.json
+
+###
+
+GET http://localhost:8200/laboratory/computer/desk/5
+Accept: application/json
+Content-Type: application/json
+
+<> 2021-08-30T215116.200.json
+
+###
+
+GET http://localhost:8200/laboratory/computer/desk/2
+Accept: application/json
+Content-Type: application/json
+
+<> 2021-08-30T215110.200.json
+
+###
+
+GET http://localhost:8200/laboratory/computer/room/2
+Accept: application/json
+Content-Type: application/json
+
+<> 2021-08-30T215103.404.json
+
+###
+
+GET http://localhost:8200/laboratory/computer/2
+Accept: application/json
+Content-Type: application/json
+
+<> 2021-08-30T215051.200.json
+
+###
+
+POST http://localhost:8200/laboratory/computer
+Accept: application/json
+Content-Type: application/json
+
+{
+  "monitors": 2,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "windows",
+  "graphicCard": "2gb",
+  "cpu": "INTEL",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI",
+  "deskId": 4
+}
+
+<> 2021-08-30T215037.201.json
+
+###
+
+GET http://localhost:8200/laboratory/computer
+Accept: application/json
+Content-Type: application/json
+
+<> 2021-08-30T215001.200.json
+
+###
+
+POST http://localhost:8200/laboratory/computer
+Accept: application/json
+Content-Type: application/json
+
+{
+  "monitors": 2,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "windows",
+  "graphicCard": "2gb",
+  "cpu": "INTEL",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI",
+  "deskId": 5
+}
+
+<> 2021-08-30T214953.201.json
+
+###
+
+POST http://localhost:8200/laboratory/computer
+Accept: application/json
+Content-Type: application/json
+
+{
+  "monitors": 2,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "windows",
+  "graphicCard": "2gb",
+  "cpu": "INTEL",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI",
+  "deskId": 5
+}
+
+<> 2021-08-30T214949.201.json
+
+###
+
+POST http://localhost:8200/laboratory/computer_station
+Accept: application/json
+Content-Type: application/json
+
+{
+  "monitors": 2,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "windows",
+  "graphicCard": "2gb",
+  "cpu": "INTEL",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI",
+  "deskId": 5
+}
+
+<> 2021-08-30T214938.404.json
+
+###
+
+POST http://localhost:8200/laboratory/desk
+Accept: application/json
+Content-Type: application/json
+
+{
+  "deskType": "NORMAL",
+  "roomId": 2
+}
+
+<> 2021-08-30T214827.201.json
+
+###
+
+POST http://localhost:8200/laboratory/desk
+Accept: application/json
+Content-Type: application/json
+
+{
+  "deskType": "NORMAL",
+  "roomId": 2
+}
+
+<> 2021-08-30T214824.201.json
+
+###
+
+GET http://localhost:8200/laboratory/computer
+Accept: application/json
+Content-Type: application/json
+
+<> 2021-08-30T214817.200.json
+
+###
+
 GET http://localhost:8200/laboratory/room
 Accept: application/json
 Content-Type: application/json
@@ -333,147 +534,6 @@ Accept: application/json
 Content-Type: application/json
 
 <> 2021-08-25T005216.200.json
-
-###
-
-GET http://localhost:8200/laboratory/room/2
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-25T005205.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-25T001820.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-25T000930.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-25T000446.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-25T000055.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T235515.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T235353.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T235244.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T234439.500.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T234332.500.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T233643.500.json
-
-###
-
-POST http://localhost:8200/laboratory/computer_station
-Accept: application/json
-Content-Type: application/json
-
-{
-  "monitors": 2,
-  "headphones": true,
-  "microphone": true,
-  "operatingSystem": "windows",
-  "graphicCard": "2gb",
-  "cpu": "INTEL",
-  "ram": 2,
-  "drive": 512,
-  "networkType": "WIFI"
-
-}
-
-<> 2021-08-24T233624.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T233305.500.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T233101.200.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T232837.500.json
-
-###
-
-GET http://localhost:8200/laboratory/rooms
-Accept: application/json
-Content-Type: application/json
-
-<> 2021-08-24T232432.500.json
 
 ###
 

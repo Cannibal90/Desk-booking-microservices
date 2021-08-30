@@ -83,20 +83,62 @@ Content-Type: application/json
 
 ###
 
-POST  http://localhost:8200/laboratory/computer_station
+GET  http://localhost:8200/laboratory/computer
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET  http://localhost:8200/laboratory/computer/2
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET  http://localhost:8200/laboratory/computer/desk/4
+Accept: application/json
+Content-Type: application/json
+
+###
+
+POST  http://localhost:8200/laboratory/computer
 Accept: application/json
 Content-Type: application/json
 
 {
-"monitors": 2,
-"headphones": true,
-"microphone": true,
-"operatingSystem": "windows",
-"graphicCard": "2gb",
-"cpu": "INTEL",
-"ram": 2,
-"drive": 512,
-"networkType": "WIFI"
+  "monitors": 2,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "windows",
+  "graphicCard": "2gb",
+  "cpu": "INTEL",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI",
+  "deskId": 4
 }
 
 ###
+
+PUT  http://localhost:8200/laboratory/computer/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "monitors": 1,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "Linux",
+  "graphicCard": "3gb",
+  "cpu": "AMD",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI",
+  "deskId": 4
+}
+
+###
+
+DELETE  http://localhost:8200/laboratory/computer/1
+Accept: application/json
+Content-Type: application/json
