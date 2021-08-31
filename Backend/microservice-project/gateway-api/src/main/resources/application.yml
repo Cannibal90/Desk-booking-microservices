@@ -3,36 +3,40 @@ server:
 spring:
   application:
     name: GATEWAY-SERVICE
-  cloud:
-    gateway:
-      routes:
-        - id: laboratory-service
-          uri: lb://LABORATORY-SERVICE
-          predicates:
-            - Path=/laboratory/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: laboratory-service
-                fallbackuri: forward:/laboratoryFallBack
-        - id: reservation-service
-          uri: lb://RESERVATION-SERVICE
-          predicates:
-            - Path=/reservation/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: reservation-service
-                fallbackuri: forward:/reservationFallBack
-        - id: user-service
-          uri: lb://USER-SERVICE
-          predicates:
-            - Path=/user/**
-          filters:
-            - name: CircuitBreaker
-              args:
-                name: user-service
-                fallbackuri: forward:/userFallBack
+  main:
+    allow-bean-definition-overriding: true
+jwt:
+  secret: BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: laboratory-service
+#          uri: lb://LABORATORY-SERVICE
+#          predicates:
+#            - Path=/laboratory/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: laboratory-service
+#                fallbackuri: forward:/laboratoryFallBack
+#        - id: reservation-service
+#          uri: lb://RESERVATION-SERVICE
+#          predicates:
+#            - Path=/reservation/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: reservation-service
+#                fallbackuri: forward:/reservationFallBack
+#        - id: user-service
+#          uri: lb://USER-SERVICE
+#          predicates:
+#            - Path=/user/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: user-service
+#                fallbackuri: forward:/userFallBack
 
 management:
   endpoints:
