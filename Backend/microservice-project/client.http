@@ -14,7 +14,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8200/laboratory/room
+GET http://localhost:8989/laboratory/room
 Accept: application/json
 Content-Type: application/json
 
@@ -142,3 +142,23 @@ Content-Type: application/json
 DELETE  http://localhost:8200/laboratory/computer/1
 Accept: application/json
 Content-Type: application/json
+
+
+###
+
+POST  http://localhost:8989/user/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+
+###
+
+GET  http://localhost:8989/user/new
+Accept: application/json
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfVVNFUiJ9.R7_p06Ptjf7FfgQMtSZgQvOJ81AH2o876N4xgEYCYG6OEzyq4bMuPCUr8dv-3D5knN1TRBS2VcZkx9VuszvUJg

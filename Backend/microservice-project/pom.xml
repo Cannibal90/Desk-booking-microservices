@@ -25,6 +25,7 @@
         <module>laboratory-room-service</module>
         <module>reservation-service</module>
         <module>user-service</module>
+        <module>commons</module>
     </modules>
 
 </project>

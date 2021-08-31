@@ -21,5 +21,5 @@ public class UserDetails {
     private String name;
     private String surname;
     private int age;
-    private String City;
+    private String city;
 }
