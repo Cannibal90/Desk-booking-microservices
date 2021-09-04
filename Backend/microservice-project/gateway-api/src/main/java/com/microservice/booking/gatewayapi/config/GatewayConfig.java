@@ -16,15 +16,15 @@ public class GatewayConfig {
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("laboratory-service", r -> r.path("/laboratory/**")
-                        .filters(f -> f.filter(filter))
+                        //.filters(f -> f.filter(filter))
                         .uri("lb://LABORATORY-SERVICE"))
 
                 .route("reservation-service", r -> r.path("/reservation/**")
-                        .filters(f -> f.filter(filter))
+                        //.filters(f -> f.filter(filter))
                         .uri("lb://RESERVATION-SERVICE"))
 
-                .route("user-service", r -> r.path("/user/**")
-                        .filters(f -> f.filter(filter))
+                .route("user-service", r -> r.path("/users/**")
+                        //.filters(f -> f.filter(filter))
                         .uri("lb://USER-SERVICE"))
                 .build();
     }

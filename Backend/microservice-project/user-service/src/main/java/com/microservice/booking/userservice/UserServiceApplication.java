@@ -32,7 +32,7 @@ public class UserServiceApplication implements CommandLineRunner {
   @Override
   public void run(String... args) throws Exception {
 
-    User user = new User("admin", passwordEncode().encode("admin"), "admin@gmail.com", Role.ROLE_USER);
+    User user = new User("admin", passwordEncode().encode("admin"), "admin@gmail.com", Role.ROLE_ADMIN);
     userRepository.save(user);
   }
 }

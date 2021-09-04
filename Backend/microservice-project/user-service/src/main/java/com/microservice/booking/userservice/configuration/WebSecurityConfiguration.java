@@ -22,10 +22,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable();
-        http.cors().and().authorizeRequests()
-                .antMatchers( "/user/login").permitAll()
-                .and()
-                .authorizeRequests().anyRequest().authenticated();
+        http.cors().and().authorizeRequests().anyRequest().permitAll();
+//                .antMatchers( "/user/login").permitAll()
+//                .and()
+//                .authorizeRequests().anyRequest().authenticated();
 
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(roleFilter, UsernamePasswordAuthenticationFilter.class);
