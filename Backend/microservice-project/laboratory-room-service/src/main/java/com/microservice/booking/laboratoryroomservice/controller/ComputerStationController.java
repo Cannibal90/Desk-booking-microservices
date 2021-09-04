@@ -16,8 +16,6 @@ public class ComputerStationController {
     @Autowired
     private ComputerStationService computerStationService;
 
-    //TODO napisac funkcje i potestowac
-    //TODO rozpisac logike frontu dla dodawania i usuwania room/desk/computer
 
     @GetMapping("/computer")
     public ResponseEntity<List<ComputerStationResponseDTO>> getAll(){

@@ -15,8 +15,7 @@ public class ExceptionDTO {
         this.message = message;
         this.timestamp = LocalDateTime.now();
     }
-    //TODO dodac commonsy i sprawdzic czy dzialaja
-    //sprobowac wyciagnac jakos configuracje dla filtru
+
     //dodac key do config serweru i pobierac przez @Value
 }
 
