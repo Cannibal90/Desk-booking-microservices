@@ -3,11 +3,11 @@ package com.microservice.booking.laboratoryroomservice.service;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.LaboratoryRoomRequestDTO;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.LaboratoryRoomResponseDTO;
 import com.microservice.booking.laboratoryroomservice.entity.LaboratoryRoom;
-import com.microservice.booking.laboratoryroomservice.exception.ApiNoFoundResourceException;
-import com.microservice.booking.laboratoryroomservice.exception.ApiWrongParameterException;
-import com.microservice.booking.laboratoryroomservice.exception.ExceptionConst;
 import com.microservice.booking.laboratoryroomservice.mappers.LaboratoryRoomMapper;
 import com.microservice.booking.laboratoryroomservice.repository.LaboratoryRoomRepository;
+import exception.ApiNoFoundResourceException;
+import exception.ApiWrongParameterException;
+import exception.ExceptionConst;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

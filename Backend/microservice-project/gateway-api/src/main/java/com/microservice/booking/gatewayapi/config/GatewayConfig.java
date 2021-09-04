@@ -17,7 +17,7 @@ public class GatewayConfig {
         return builder.routes()
                 .route("laboratory-service", r -> r.path("/laboratory/**")
                         //.filters(f -> f.filter(filter))
-                        .uri("lb://LABORATORY-SERVICE"))
+                        .uri("lb://LABORATORY-ROOM-SERVICE"))
 
                 .route("reservation-service", r -> r.path("/reservation/**")
                         //.filters(f -> f.filter(filter))
