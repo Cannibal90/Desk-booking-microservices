@@ -47,4 +47,9 @@ public class ComputerStationController {
         computerStationService.deleteStation(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/computer/check/{id}")
+    public ResponseEntity<Boolean> checkComputer(@PathVariable Long id){
+        return ResponseEntity.ok(computerStationService.checkStation(id));
+    }
 }

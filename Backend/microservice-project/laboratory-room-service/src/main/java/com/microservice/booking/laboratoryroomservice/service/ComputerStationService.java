@@ -110,4 +110,10 @@ public class ComputerStationService {
             throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_COMPUTER);
         computerStationRepository.deleteById(id);
     }
+
+    public boolean checkStation(Long id){
+        if(computerStationRepository.findById(id).isEmpty())
+            return false;
+        return true;
+    }
 }

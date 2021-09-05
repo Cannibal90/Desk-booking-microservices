@@ -53,4 +53,9 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/user/check/{id}")
+    public ResponseEntity<Boolean> checkUser(@PathVariable Long id){
+        return ResponseEntity.ok(userService.checkUser(id));
+    }
 }
