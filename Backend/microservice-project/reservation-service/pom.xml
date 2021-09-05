@@ -128,6 +128,11 @@
             <artifactId>spring-beans</artifactId>
             <version>5.3.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.microservice.booking</groupId>
+            <artifactId>commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

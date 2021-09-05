@@ -201,3 +201,12 @@ Content-Type: application/json
 DELETE  http://localhost:8989/users/user/7
 Accept: application/json
 Content-Type: application/json
+
+###
+
+
+GET  http://localhost:8989/reservation/reserve
+Accept: application/json
+Content-Type: application/json
+
+###

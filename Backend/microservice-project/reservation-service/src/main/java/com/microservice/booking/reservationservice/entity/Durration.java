@@ -18,7 +18,7 @@ public class Durration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime begining;
+    private LocalDateTime beginning;
     private LocalDateTime end;
     //RESERVATION
 }
