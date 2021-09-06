@@ -203,8 +203,38 @@ Content-Type: application/json
 {
   "userId": 1,
   "stationId": 1,
-  "beginning": "2021-09-06T17:05:46.6148812",
-  "end": "2021-09-07T17:05:46.6148812"
+  "beginning": "2021-10-10T12:05:46.6148812",
+  "end": "2021-10-10T13:05:46.6148812"
+}
+
+
+###
+
+PUT  http://localhost:8989/reservation/reserve/3
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "stationId": 1,
+  "beginning": "2021-10-10T12:05:46.6148812",
+  "end": "2021-10-10T13:05:46.6148812"
 }
 
 ###
+
+GET  http://localhost:8989/reservation/reserve/station/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET  http://localhost:8989/reservation/reserve/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+DELETE  http://localhost:8989/reservation/reserve/1
+Accept: application/json
+Content-Type: application/json

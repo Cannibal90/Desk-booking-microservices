@@ -68,7 +68,7 @@ public class ReservationService {
     var durrations = durrationRepository.findAllByStationId(reservationRequestDTO.getStationId());
     boolean checkDurration = false;
     for(Durration durration: durrations){
-      if(!validateDurration(requestDurration, durration)) {
+      if(!validateDurration( durration, requestDurration)) {
         checkDurration = true;
         break;
       }
@@ -106,7 +106,7 @@ public class ReservationService {
     var filtered = durrations.stream().filter(d->d.getId()!=reservationInDb.get().getDurration().getId()).collect(Collectors.toList());
     boolean checkDurration = false;
     for(Durration durration: filtered){
-      if(!validateDurration(requestDurration, durration)) {
+      if(!validateDurration(durration, requestDurration)) {
         checkDurration = true;
         break;
       }
@@ -131,8 +131,17 @@ public class ReservationService {
   }
 
   private boolean validateDurration(Durration durration1, Durration durration2) {
-    if (durration1.getEnd().isAfter(durration2.getBeginning())
-        || durration1.getBeginning().isBefore(durration2.getEnd())
+    System.out.println("D1: " + durration1.toString());
+    System.out.println("D2: " + durration2.toString());
+    System.out.println((durration1.getEnd().isAfter(durration2.getBeginning()) && (durration1.getEnd().isBefore(durration2.getEnd()))));
+    System.out.println((durration1.getBeginning().isBefore(durration2.getEnd()) && durration1.getEnd().isAfter(durration2.getEnd())));
+    System.out.println((durration1.getBeginning().isBefore(durration2.getBeginning())
+            && durration1.getEnd().isAfter(durration2.getEnd())));
+    System.out.println((durration1.getBeginning().isAfter(durration2.getBeginning())
+            && durration1.getEnd().isBefore(durration2.getEnd())));
+
+    if ((durration1.getEnd().isAfter(durration2.getBeginning()) && (durration1.getEnd().isBefore(durration2.getEnd())))
+        || (durration1.getBeginning().isBefore(durration2.getEnd()) && durration1.getEnd().isAfter(durration2.getEnd()))
         || (durration1.getBeginning().isBefore(durration2.getBeginning())
             && durration1.getEnd().isAfter(durration2.getEnd()))
         || (durration1.getBeginning().isAfter(durration2.getBeginning())
