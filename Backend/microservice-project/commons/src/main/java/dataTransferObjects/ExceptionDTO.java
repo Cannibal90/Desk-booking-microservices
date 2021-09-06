@@ -1,8 +1,8 @@
-package com.microservice.booking.laboratoryroomservice.dataTransferObjects;
+package dataTransferObjects;
 
 import lombok.Data;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
 
 @Data
 public class ExceptionDTO {
@@ -15,4 +15,7 @@ public class ExceptionDTO {
         this.message = message;
         this.timestamp = LocalDateTime.now();
     }
+
+    //dodac key do config serweru i pobierac przez @Value
 }
+

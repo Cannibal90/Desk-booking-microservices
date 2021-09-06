@@ -11,6 +11,5 @@ public class DeskResponseDTO {
     private Long id;
     @Enumerated(value = EnumType.STRING)
     private DeskType deskType;
-    private Long roomId;
     private int stationsCount;
 }

@@ -18,7 +18,17 @@ public class Durration {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDateTime begining;
+    private Long stationId;
+    private LocalDateTime beginning;
     private LocalDateTime end;
-    //RESERVATION
+
+    @Override
+    public String toString() {
+        return "Durration{" +
+                "id=" + id +
+                ", stationId=" + stationId +
+                ", beginning=" + beginning +
+                ", end=" + end +
+                '}';
+    }
 }

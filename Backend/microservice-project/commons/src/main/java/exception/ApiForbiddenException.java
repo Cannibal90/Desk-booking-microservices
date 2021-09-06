@@ -1,4 +1,4 @@
-package com.projekt.cannibal.car_rent.exceptions;
+package exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

@@ -1,20 +1,6 @@
-POST  http://localhost:8989/user/getUser
-Accept: application/json
-Content-Type: application/json
-
-{
-  "order": {
-    "id": 102,
-    "name": "book1",
-    "qty": 13,
-    "price": 1000
-  },
-  "payment": {}
-}
-
 ###
 
-GET http://localhost:8200/laboratory/room
+GET http://localhost:8989/laboratory/room
 Accept: application/json
 Content-Type: application/json
 
@@ -22,7 +8,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:8200/laboratory/room/1
+DELETE http://localhost:8989/laboratory/room/1
 Accept: application/json
 Content-Type: application/json
 
@@ -42,6 +28,7 @@ Content-Type: application/json
 ###
 
 
+
 PUT http://localhost:8200/laboratory/room/2
 Accept: application/json
 Content-Type: application/json
@@ -53,7 +40,54 @@ Content-Type: application/json
 
 ###
 
-POST  http://localhost:8200/laboratory/computer_station
+POST  http://localhost:8200/laboratory/desk
+Accept: application/json
+Content-Type: application/json
+
+{
+  "deskType": "NORMAL",
+  "roomId": 2
+}
+
+###
+
+PUT  http://localhost:8200/laboratory/desk/4
+Accept: application/json
+Content-Type: application/json
+
+{
+  "deskType": "NORMAL",
+  "roomId": 1
+}
+
+###
+
+DELETE  http://localhost:8200/laboratory/desk/4
+Accept: application/json
+Content-Type: application/json
+
+
+###
+
+GET  http://localhost:8200/laboratory/computer
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET  http://localhost:8200/laboratory/computer/2
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET  http://localhost:8200/laboratory/computer/desk/4
+Accept: application/json
+Content-Type: application/json
+
+###
+
+POST  http://localhost:8200/laboratory/computer
 Accept: application/json
 Content-Type: application/json
 
@@ -66,8 +100,141 @@ Content-Type: application/json
   "cpu": "INTEL",
   "ram": 2,
   "drive": 512,
-  "networkType": "WIFI"
-
+  "networkType": "WIFI",
+  "deskId": 1
 }
 
 ###
+
+PUT  http://localhost:8200/laboratory/computer/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "monitors": 1,
+  "headphones": true,
+  "microphone": true,
+  "operatingSystem": "Linux",
+  "graphicCard": "3gb",
+  "cpu": "AMD",
+  "ram": 2,
+  "drive": 512,
+  "networkType": "WIFI",
+  "deskId": 4
+}
+
+###
+
+DELETE  http://localhost:8200/laboratory/computer/1
+Accept: application/json
+Content-Type: application/json
+
+
+###
+
+GET  http://localhost:8989/users/user/4
+Accept: application/json
+Content-Type: application/json
+
+###
+
+POST  http://localhost:8989/users/user
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "user",
+  "email": "user@gmail.com",
+  "role": "ROLE_ADMIN",
+  "name": "user1",
+  "surname": "user2",
+  "age": 20,
+  "city": "Lodz"
+}
+
+###
+
+POST  http://localhost:8989/users/user/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "user"
+}
+
+###
+
+
+PUT  http://localhost:8989/users/user/2
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "user",
+  "email": "user@gmail.com",
+  "role": "ROLE_ADMIN",
+  "name": "user1",
+  "surname": "user2",
+  "age": 20,
+  "city": "Lodz"
+}
+
+###
+
+DELETE  http://localhost:8989/users/user/7
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET  http://localhost:8989/reservation/reserve
+Accept: application/json
+Content-Type: application/json
+
+###
+
+POST  http://localhost:8989/reservation/reserve
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "stationId": 1,
+  "beginning": "2021-10-10T12:05:46.6148812",
+  "end": "2021-10-10T13:05:46.6148812"
+}
+
+
+###
+
+PUT  http://localhost:8989/reservation/reserve/3
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "stationId": 1,
+  "beginning": "2021-10-10T12:05:46.6148812",
+  "end": "2021-10-10T13:05:46.6148812"
+}
+
+###
+
+GET  http://localhost:8989/reservation/reserve/station/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET  http://localhost:8989/reservation/reserve/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+DELETE  http://localhost:8989/reservation/reserve/1
+Accept: application/json
+Content-Type: application/json

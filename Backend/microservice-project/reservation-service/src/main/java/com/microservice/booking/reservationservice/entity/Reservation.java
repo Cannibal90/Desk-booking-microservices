@@ -19,6 +19,15 @@ public class Reservation {
     private Durration durration;
 
     private Long userId;
-    private Long StationId;
+    private Long stationId;
 
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", durration=" + durration +
+                ", userId=" + userId +
+                ", stationId=" + stationId +
+                '}';
+    }
 }

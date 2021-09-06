@@ -19,5 +19,4 @@ public class ComputerStationResponseDTO {
     private int drive;
     @Enumerated(value = EnumType.STRING)
     private NetworkType networkType;
-    private Long computerId;
 }
