@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import web.TokenFilter;
 
 @SpringBootApplication
 @EnableEurekaClient
@@ -17,5 +18,10 @@ public class ReservationServiceApplication {
   @Bean
   public RestTemplate getTemplate(){
     return new RestTemplate();
+  }
+
+  @Bean
+  TokenFilter getToken(){
+    return new TokenFilter();
   }
 }

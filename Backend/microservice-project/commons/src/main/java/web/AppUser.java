@@ -1,4 +1,4 @@
-package com.microservice.booking.userservice.configuration;
+package web;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -6,7 +6,6 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-
 @Data
 public class AppUser implements UserDetails {
 
@@ -20,11 +19,6 @@ public class AppUser implements UserDetails {
         this.id = id;
         this.username = username;
         this.role = role;
-    }
-
-    public AppUser(Long id, String username) {
-        this.id = id;
-        this.username = username;
     }
 
     @Override

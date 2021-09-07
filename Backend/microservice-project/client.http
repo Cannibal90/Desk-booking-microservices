@@ -19,6 +19,7 @@ Content-Type: application/json
 POST http://localhost:8200/laboratory/room
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
 
 {
   "floor": 2,
@@ -32,6 +33,7 @@ Content-Type: application/json
 PUT http://localhost:8200/laboratory/room/2
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
 
 {
   "floor": 3,
@@ -43,10 +45,11 @@ Content-Type: application/json
 POST  http://localhost:8200/laboratory/desk
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
 
 {
   "deskType": "NORMAL",
-  "roomId": 2
+  "roomId": 1
 }
 
 ###
@@ -90,6 +93,7 @@ Content-Type: application/json
 POST  http://localhost:8200/laboratory/computer
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
 
 {
   "monitors": 2,
@@ -132,9 +136,10 @@ Content-Type: application/json
 
 ###
 
-GET  http://localhost:8989/users/user/4
+GET  http://localhost:8989/users/user
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
 
 ###
 
@@ -160,8 +165,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user",
-  "password": "user"
+  "username": "admin",
+  "password": "admin"
 }
 
 ###
@@ -199,6 +204,7 @@ Content-Type: application/json
 POST  http://localhost:8989/reservation/reserve
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
 
 {
   "userId": 1,

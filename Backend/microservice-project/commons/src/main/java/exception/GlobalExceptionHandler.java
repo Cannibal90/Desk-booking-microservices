@@ -3,6 +3,7 @@ package exception;
 import dataTransferObjects.ExceptionDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
@@ -21,6 +22,11 @@ public interface GlobalExceptionHandler {
     @ExceptionHandler(ApiNoFoundResourceException.class)
     default ResponseEntity<ExceptionDTO> onNotFoundException(Exception exception) {
         return createProperResponse(exception,HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    default ResponseEntity<ExceptionDTO> onAccessDeniedException(Exception exception) {
+        return createProperResponse(exception,HttpStatus.FORBIDDEN);
     }
 
     default ResponseEntity<ExceptionDTO> createProperResponse(Exception exception, HttpStatus status) {
