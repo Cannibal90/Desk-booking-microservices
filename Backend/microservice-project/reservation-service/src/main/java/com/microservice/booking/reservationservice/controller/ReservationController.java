@@ -6,6 +6,7 @@ import com.microservice.booking.reservationservice.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,37 +15,50 @@ import java.util.List;
 @RequestMapping("reservation")
 public class ReservationController {
 
-    @Autowired
-    ReservationService reservationService;
+  @Autowired ReservationService reservationService;
 
-    @GetMapping("/reserve")
-    public ResponseEntity<List<ReservationResponseDTO>> getAll(){
-        return ResponseEntity.ok(reservationService.getAll());
-    }
+  @GetMapping("/reserve")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  public ResponseEntity<List<ReservationResponseDTO>> getAll() {
+    return ResponseEntity.ok(reservationService.getAll());
+  }
 
-    @GetMapping("/reserve/{id}")
-    public ResponseEntity<ReservationResponseDTO> getReservationById(@PathVariable Long id){
-        return ResponseEntity.ok(reservationService.getReservationById(id));
-    }
+  @GetMapping("/reserve/{id}")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  public ResponseEntity<ReservationResponseDTO> getReservationById(@PathVariable Long id) {
+    return ResponseEntity.ok(reservationService.getReservationById(id));
+  }
 
-    @GetMapping("/reserve/station/{id}")
-    public ResponseEntity<List<ReservationResponseDTO>> getReservationByStationId(@PathVariable Long id){
-        return ResponseEntity.ok(reservationService.getReservationsForComputerId(id));
-    }
+  @GetMapping("/reserve/station/{id}")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  public ResponseEntity<List<ReservationResponseDTO>> getReservationByStationId(
+      @PathVariable Long id, @RequestHeader(value = "Authorization") String auth) {
+    return ResponseEntity.ok(reservationService.getReservationsForComputerId(id, auth));
+  }
 
-    @PostMapping("/reserve")
-    public ResponseEntity<ReservationResponseDTO> createReservation(@RequestBody ReservationRequestDTO reservationRequestDTO){
-        return ResponseEntity.status(HttpStatus.CREATED).body(reservationService.createReservation(reservationRequestDTO));
-    }
+  // TODO USER mzoe tylko swoje?
+  @PostMapping("/reserve")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  public ResponseEntity<ReservationResponseDTO> createReservation(
+      @RequestBody ReservationRequestDTO reservationRequestDTO,
+      @RequestHeader(value = "Authorization") String auth) {
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body(reservationService.createReservation(reservationRequestDTO, auth));
+  }
 
-    @PutMapping("/reserve/{id}")
-    public ResponseEntity<ReservationResponseDTO> updateReservation(@RequestBody ReservationRequestDTO reservationRequestDTO, @PathVariable Long id){
-        return ResponseEntity.ok(reservationService.updateReservation(reservationRequestDTO,id));
-    }
+  // TODO USER mzoe tylko swoje?
+  @PutMapping("/reserve/{id}")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  public ResponseEntity<ReservationResponseDTO> updateReservation(
+      @RequestBody ReservationRequestDTO reservationRequestDTO, @PathVariable Long id, @RequestHeader(value = "Authorization") String auth) {
+    return ResponseEntity.ok(reservationService.updateReservation(reservationRequestDTO, id, auth));
+  }
 
-    @DeleteMapping("/reserve/{id}")
-    public ResponseEntity<ReservationResponseDTO> deleteReservationById(@PathVariable Long id){
-        reservationService.deleteReservation(id);
-        return ResponseEntity.noContent().build();
-    }
+  // TODO USER mzoe tylko swoje?
+  @DeleteMapping("/reserve/{id}")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  public ResponseEntity<ReservationResponseDTO> deleteReservationById(@PathVariable Long id) {
+    reservationService.deleteReservation(id);
+    return ResponseEntity.noContent().build();
+  }
 }

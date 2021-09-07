@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import web.TokenFilter;
 
 @SpringBootApplication
 @EnableEurekaClient
@@ -24,6 +25,11 @@ public class UserServiceApplication implements CommandLineRunner {
   @Bean
   PasswordEncoder passwordEncode(){
     return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  TokenFilter getToken(){
+    return new TokenFilter();
   }
 
   @Autowired

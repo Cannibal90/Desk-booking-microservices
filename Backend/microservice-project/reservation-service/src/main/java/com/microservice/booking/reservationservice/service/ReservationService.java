@@ -11,10 +11,13 @@ import exception.ApiNoFoundResourceException;
 import exception.ApiWrongParameterException;
 import exception.ExceptionConst;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,8 +48,8 @@ public class ReservationService {
     return reservationMapper.toReservationResponse(reservation.get());
   }
 
-  public List<ReservationResponseDTO> getReservationsForComputerId(Long id) {
-    if(!validateStation(id))
+  public List<ReservationResponseDTO> getReservationsForComputerId(Long id, String auth) {
+    if(!validateStation(id, auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_COMPUTER);
     List<Reservation> reservations = reservationRepository.findAllByStationId(id);
     List<ReservationResponseDTO> responseDTO = new ArrayList<>();
@@ -54,11 +57,11 @@ public class ReservationService {
     return  responseDTO;
   }
 
-  public ReservationResponseDTO createReservation(ReservationRequestDTO reservationRequestDTO) {
-    if(!validateUser(reservationRequestDTO.getUserId()))
+  public ReservationResponseDTO createReservation(ReservationRequestDTO reservationRequestDTO, String auth) {
+    if(!validateUser(reservationRequestDTO.getUserId(), auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_USER);
 
-    if(!validateStation(reservationRequestDTO.getStationId()))
+    if(!validateStation(reservationRequestDTO.getStationId(), auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_COMPUTER);
 
     // check all durration for desk
@@ -83,7 +86,7 @@ public class ReservationService {
   }
 
   public ReservationResponseDTO updateReservation(
-      ReservationRequestDTO reservationRequestDTO, Long id) {
+      ReservationRequestDTO reservationRequestDTO, Long id, String auth) {
     if(id <= 0)
       throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
 
@@ -91,10 +94,10 @@ public class ReservationService {
     if(reservationInDb.isEmpty())
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_RESERVATION);
 
-    if(!validateUser(reservationRequestDTO.getUserId()))
+    if(!validateUser(reservationRequestDTO.getUserId(), auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_USER);
 
-    if(!validateStation(reservationRequestDTO.getStationId()))
+    if(!validateStation(reservationRequestDTO.getStationId(), auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_COMPUTER);
 
 
@@ -131,15 +134,7 @@ public class ReservationService {
   }
 
   private boolean validateDurration(Durration durration1, Durration durration2) {
-    System.out.println("D1: " + durration1.toString());
-    System.out.println("D2: " + durration2.toString());
-    System.out.println((durration1.getEnd().isAfter(durration2.getBeginning()) && (durration1.getEnd().isBefore(durration2.getEnd()))));
-    System.out.println((durration1.getBeginning().isBefore(durration2.getEnd()) && durration1.getEnd().isAfter(durration2.getEnd())));
-    System.out.println((durration1.getBeginning().isBefore(durration2.getBeginning())
-            && durration1.getEnd().isAfter(durration2.getEnd())));
-    System.out.println((durration1.getBeginning().isAfter(durration2.getBeginning())
-            && durration1.getEnd().isBefore(durration2.getEnd())));
-
+    //TODO max 4h dla usera i czy czas w d1 jest beg przed end
     if ((durration1.getEnd().isAfter(durration2.getBeginning()) && (durration1.getEnd().isBefore(durration2.getEnd())))
         || (durration1.getBeginning().isBefore(durration2.getEnd()) && durration1.getEnd().isAfter(durration2.getEnd()))
         || (durration1.getBeginning().isBefore(durration2.getBeginning())
@@ -149,16 +144,24 @@ public class ReservationService {
     return true;
   }
 
-  private boolean validateUser(Long id) {
-    String userURI = "http://localhost:8989/users/user/check/" + id;
-    Boolean check = restTemplate.getForObject(userURI,Boolean.class);
-    return check;
+  private HttpEntity<String> getEntity(String auth) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.set("Authorization", auth);
+    return new HttpEntity<String>(headers);
   }
 
-  private boolean validateStation(Long id) {
+  private boolean validateUser(Long id, String auth) {
+    String userURI = "http://localhost:8989/users/user/check/" + id;
+    HttpEntity<String> entity = getEntity(auth);
+    ResponseEntity<Boolean> response = restTemplate.exchange(userURI, HttpMethod.GET, entity, Boolean.class);
+    return response.getBody() != null;
+  }
+
+  private boolean validateStation(Long id, String auth) {
     String stationURI = "http://localhost:8200/laboratory/computer/check/" + id;
-    Boolean check = restTemplate.getForObject(stationURI,Boolean.class);
-    return check;
+    HttpEntity<String> entity = getEntity(auth);
+    ResponseEntity<Boolean> response = restTemplate.exchange(stationURI, HttpMethod.GET, entity, Boolean.class);
+    return response.getBody() != null;
   }
 
 }

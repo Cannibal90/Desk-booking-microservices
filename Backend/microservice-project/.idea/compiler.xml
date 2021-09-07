@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cloud-config-server" />
         <module name="discovery-service" />
-        <module name="commons" />
       </profile>
       <profile name="Annotation profile for microservice-project" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -31,6 +30,17 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar" />
         </processorPath>
         <module name="gateway-api" />
+      </profile>
+      <profile name="Annotation profile for commons" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.4.2.Final/mapstruct-processor-1.4.2.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.4.2.Final/mapstruct-1.4.2.Final.jar" />
+        </processorPath>
+        <module name="commons" />
       </profile>
     </annotationProcessing>
   </component>
