@@ -143,7 +143,7 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9s
 
 ###
 
-POST  http://localhost:8989/users/user
+POST  http://localhost:8989/users/user/register
 Accept: application/json
 Content-Type: application/json
 
@@ -151,7 +151,7 @@ Content-Type: application/json
   "username": "user",
   "password": "user",
   "email": "user@gmail.com",
-  "role": "ROLE_ADMIN",
+  "role": "ROLE_USER",
   "name": "user1",
   "surname": "user2",
   "age": 20,
@@ -165,16 +165,17 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "admin"
+  "username": "user",
+  "password": "user"
 }
 
 ###
 
 
-PUT  http://localhost:8989/users/user/2
+PUT  http://localhost:8989/users/user/1
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpZCI6IjIiLCJyb2xlIjoiUk9MRV9VU0VSIn0.GOFGZhGkrd4exfOKc8NHulIx4NpW9m-hRyMOdsXuPXZhv9bZ9OYJHBX2KBIgtP88qz_zc_422QugY5AJm6I7xQ
 
 {
   "username": "user1",
@@ -204,27 +205,28 @@ Content-Type: application/json
 POST  http://localhost:8989/reservation/reserve
 Accept: application/json
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpZCI6IjIiLCJyb2xlIjoiUk9MRV9VU0VSIn0.GOFGZhGkrd4exfOKc8NHulIx4NpW9m-hRyMOdsXuPXZhv9bZ9OYJHBX2KBIgtP88qz_zc_422QugY5AJm6I7xQ
 
 {
-  "userId": 1,
+  "userId": 2,
   "stationId": 1,
-  "beginning": "2021-10-10T12:05:46.6148812",
-  "end": "2021-10-10T13:05:46.6148812"
+  "beginning": "2021-10-10T18:05:46.6148812",
+  "end": "2021-10-10T19:05:46.6148812"
 }
 
 
 ###
 
-PUT  http://localhost:8989/reservation/reserve/3
+PUT  http://localhost:8989/reservation/reserve/1
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpZCI6IjIiLCJyb2xlIjoiUk9MRV9VU0VSIn0.GOFGZhGkrd4exfOKc8NHulIx4NpW9m-hRyMOdsXuPXZhv9bZ9OYJHBX2KBIgtP88qz_zc_422QugY5AJm6I7xQ
 
 {
   "userId": 1,
   "stationId": 1,
-  "beginning": "2021-10-10T12:05:46.6148812",
-  "end": "2021-10-10T13:05:46.6148812"
+  "beginning": "2021-10-10T07:05:46.6148812",
+  "end": "2021-10-10T08:05:46.6148812"
 }
 
 ###
@@ -244,3 +246,5 @@ Content-Type: application/json
 DELETE  http://localhost:8989/reservation/reserve/1
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpZCI6IjIiLCJyb2xlIjoiUk9MRV9VU0VSIn0.GOFGZhGkrd4exfOKc8NHulIx4NpW9m-hRyMOdsXuPXZhv9bZ9OYJHBX2KBIgtP88qz_zc_422QugY5AJm6I7xQ
+

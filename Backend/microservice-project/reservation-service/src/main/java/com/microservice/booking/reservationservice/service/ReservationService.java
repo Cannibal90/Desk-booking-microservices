@@ -17,6 +17,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import validators.OwnResourceValidator;
+import web.AppUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,12 +59,14 @@ public class ReservationService {
     return  responseDTO;
   }
 
-  public ReservationResponseDTO createReservation(ReservationRequestDTO reservationRequestDTO, String auth) {
+  public ReservationResponseDTO createReservation(ReservationRequestDTO reservationRequestDTO, String auth, AppUser appUser) {
     if(!validateUser(reservationRequestDTO.getUserId(), auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_USER);
 
     if(!validateStation(reservationRequestDTO.getStationId(), auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_COMPUTER);
+
+    OwnResourceValidator.validate(appUser,reservationRequestDTO.getUserId());
 
     // check all durration for desk
     Durration requestDurration = new Durration();
@@ -86,7 +90,7 @@ public class ReservationService {
   }
 
   public ReservationResponseDTO updateReservation(
-      ReservationRequestDTO reservationRequestDTO, Long id, String auth) {
+          ReservationRequestDTO reservationRequestDTO, Long id, String auth, AppUser appUser) {
     if(id <= 0)
       throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
 
@@ -94,12 +98,15 @@ public class ReservationService {
     if(reservationInDb.isEmpty())
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_RESERVATION);
 
+    OwnResourceValidator.validate(appUser,reservationInDb.get().getUserId());
+
     if(!validateUser(reservationRequestDTO.getUserId(), auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_USER);
 
     if(!validateStation(reservationRequestDTO.getStationId(), auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_COMPUTER);
 
+    OwnResourceValidator.validate(appUser,reservationRequestDTO.getUserId());
 
     //check all durration for desk
     Durration requestDurration = new Durration();
@@ -125,11 +132,13 @@ public class ReservationService {
 
   }
 
-  public void deleteReservation(Long id) {
+  public void deleteReservation(Long id, AppUser appUser) {
     if (id <= 0) throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
 
-    if (reservationRepository.findById(id).isEmpty())
+    var reservation = reservationRepository.findById(id);
+    if (reservation.isEmpty())
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_RESERVATION);
+    OwnResourceValidator.validate(appUser,reservation.get().getUserId());
     reservationRepository.deleteById(id);
   }
 
