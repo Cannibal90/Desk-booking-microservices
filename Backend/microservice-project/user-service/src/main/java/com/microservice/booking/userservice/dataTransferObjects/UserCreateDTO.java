@@ -15,8 +15,6 @@ public class UserCreateDTO {
     private String username;
     private String password;
     private String email;
-    @Enumerated(value = EnumType.STRING)
-    private Role role;
 
     private String name;
     private String surname;

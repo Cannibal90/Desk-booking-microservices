@@ -10,4 +10,5 @@ public interface ExceptionConst {
     String NOT_FOUND_RESERVATION = "Reservation was not found";
     String WRONG_CREDENTIALS = "Invalid credentials";
     String WRONG_RESERVATION = "Invalid reservation time";
+    String NOT_ALLOWED = "You are not allowed to do that operation";
 }

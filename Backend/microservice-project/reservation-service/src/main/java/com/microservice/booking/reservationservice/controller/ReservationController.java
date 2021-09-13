@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import validators.LoggedUser;
+import web.AppUser;
 
 import java.util.List;
 
@@ -36,29 +38,40 @@ public class ReservationController {
     return ResponseEntity.ok(reservationService.getReservationsForComputerId(id, auth));
   }
 
-  // TODO USER mzoe tylko swoje?
   @PostMapping("/reserve")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<ReservationResponseDTO> createReservation(
       @RequestBody ReservationRequestDTO reservationRequestDTO,
-      @RequestHeader(value = "Authorization") String auth) {
+      @RequestHeader(value = "Authorization") String auth,
+      @LoggedUser AppUser appUser) {
     return ResponseEntity.status(HttpStatus.CREATED)
-        .body(reservationService.createReservation(reservationRequestDTO, auth));
+        .body(reservationService.createReservation(reservationRequestDTO, auth, appUser));
   }
 
-  // TODO USER mzoe tylko swoje?
+
   @PutMapping("/reserve/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<ReservationResponseDTO> updateReservation(
-      @RequestBody ReservationRequestDTO reservationRequestDTO, @PathVariable Long id, @RequestHeader(value = "Authorization") String auth) {
-    return ResponseEntity.ok(reservationService.updateReservation(reservationRequestDTO, id, auth));
+      @RequestBody ReservationRequestDTO reservationRequestDTO,
+      @PathVariable Long id,
+      @RequestHeader(value = "Authorization") String auth,
+      @LoggedUser AppUser appUser) {
+    return ResponseEntity.ok(reservationService.updateReservation(reservationRequestDTO, id, auth, appUser));
   }
 
-  // TODO USER mzoe tylko swoje?
+
   @DeleteMapping("/reserve/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-  public ResponseEntity<ReservationResponseDTO> deleteReservationById(@PathVariable Long id) {
-    reservationService.deleteReservation(id);
+  public ResponseEntity<ReservationResponseDTO> deleteReservationById(
+      @PathVariable Long id, @LoggedUser AppUser appUser) {
+    reservationService.deleteReservation(id, appUser);
+    return ResponseEntity.noContent().build();
+  }
+
+  @DeleteMapping("/reserve/user")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  public ResponseEntity<?> deleteReservationsForUser(@LoggedUser AppUser appUser){
+    reservationService.deleteReservationsForUser(appUser);
     return ResponseEntity.noContent().build();
   }
 }
