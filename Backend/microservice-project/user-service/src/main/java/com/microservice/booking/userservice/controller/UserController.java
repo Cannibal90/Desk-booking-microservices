@@ -63,9 +63,9 @@ public class UserController {
 
   @DeleteMapping("/user/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-  public ResponseEntity<?> deleteUserById(@PathVariable Long id, @LoggedUser AppUser appUser) {
+  public ResponseEntity<?> deleteUserById(@PathVariable Long id, @RequestHeader(value = "Authorization") String auth, @LoggedUser AppUser appUser) {
     OwnResourceValidator.validate(appUser, id);
-    userService.deleteUser(id);
+    userService.deleteUser(id, auth);
     return ResponseEntity.noContent().build();
   }
 

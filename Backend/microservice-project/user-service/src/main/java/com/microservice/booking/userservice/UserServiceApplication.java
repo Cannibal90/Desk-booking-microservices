@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 import web.TokenFilter;
 
 @SpringBootApplication
@@ -23,22 +24,27 @@ public class UserServiceApplication implements CommandLineRunner {
   }
 
   @Bean
-  PasswordEncoder passwordEncode(){
+  PasswordEncoder passwordEncode() {
     return new BCryptPasswordEncoder();
   }
 
   @Bean
-  TokenFilter getToken(){
+  TokenFilter getToken() {
     return new TokenFilter();
   }
 
-  @Autowired
-  UserRepository userRepository;
+  @Bean
+  RestTemplate getRestTemplate() {
+    return new RestTemplate();
+  }
+
+  @Autowired UserRepository userRepository;
 
   @Override
   public void run(String... args) throws Exception {
 
-    User user = new User("admin", passwordEncode().encode("admin"), "admin@gmail.com", Role.ROLE_ADMIN);
+    User user =
+        new User("admin", passwordEncode().encode("admin"), "admin@gmail.com", Role.ROLE_ADMIN);
     userRepository.save(user);
   }
 }

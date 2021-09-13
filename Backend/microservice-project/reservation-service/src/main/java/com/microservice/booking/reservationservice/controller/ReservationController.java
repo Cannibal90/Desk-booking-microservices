@@ -67,4 +67,11 @@ public class ReservationController {
     reservationService.deleteReservation(id, appUser);
     return ResponseEntity.noContent().build();
   }
+
+  @DeleteMapping("/reserve/user")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  public ResponseEntity<?> deleteReservationsForUser(@LoggedUser AppUser appUser){
+    reservationService.deleteReservationsForUser(appUser);
+    return ResponseEntity.noContent().build();
+  }
 }
