@@ -1,6 +1,7 @@
 package com.microservice.booking.userservice.service;
 
 import com.microservice.booking.userservice.dataTransferObjects.*;
+import com.microservice.booking.userservice.domain.Role;
 import com.microservice.booking.userservice.entity.User;
 import com.microservice.booking.userservice.mapper.UserMapper;
 import com.microservice.booking.userservice.repository.UserRepository;
@@ -11,9 +12,12 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import validators.OwnResourceValidator;
+import web.AppUser;
 
 import java.security.Key;
 import java.util.ArrayList;
@@ -35,11 +39,13 @@ public class UserService {
     return userDTO;
   }
 
-  public UserResponseDTO getUserById(Long id) {
+  public UserResponseDTO getUserById(Long id, AppUser appUser) {
     if (id <= 0) throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
 
     var user = userRepository.findById(id);
     if (user.isEmpty()) throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_USER);
+
+    OwnResourceValidator.validate(appUser, id);
 
     return userMapper.toUserResponse(user.get());
   }
@@ -82,12 +88,17 @@ public class UserService {
     return response;
   }
 
-  public UserResponseDTO updateUser(UserRequestDTO userRequestDTO, Long id) {
+  public UserResponseDTO updateUser(UserRequestDTO userRequestDTO, Long id, AppUser appUser) {
     if (userRequestDTO == null || id <= 0)
       throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
 
     var user = userRepository.findById(id);
     if (user.isEmpty()) throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_USER);
+
+    OwnResourceValidator.validate(appUser, id);
+
+    if (userRequestDTO.getRole().equals(Role.ROLE_ADMIN) && !appUser.getRole().equals("ROLE_ADMIN"))
+      throw new AccessDeniedException(ExceptionConst.NOT_ALLOWED);
 
     var userToUpdate = userMapper.toDomain(userRequestDTO);
     userToUpdate.setId(user.get().getId());
@@ -98,12 +109,14 @@ public class UserService {
     return userMapper.toUserResponse(updatedUser);
   }
 
-  public UserResponseDTO changePassword(UserPassDTO userPassDTO, Long id) {
+  public UserResponseDTO changePassword(UserPassDTO userPassDTO, Long id, AppUser appUser) {
     if (userPassDTO == null || id <= 0)
       throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
 
     var user = userRepository.findById(id);
     if (user.isEmpty()) throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_USER);
+
+    OwnResourceValidator.validate(appUser, id);
 
     var userToUpdate = user.get();
     if (userToUpdate.getPassword().equals(passwordEncoder.encode(userPassDTO.getOldPassword())))
@@ -114,11 +127,13 @@ public class UserService {
     return userMapper.toUserResponse(updatedUser);
   }
 
-  public void deleteUser(Long id, String auth) {
+  public void deleteUser(Long id, String auth, AppUser appUser) {
     if (id <= 0) throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
 
     if (userRepository.findById(id).isEmpty())
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_USER);
+
+    OwnResourceValidator.validate(appUser, id);
 
     String reservationURI = "http://localhost:8989/reservation/reserve/user";
     HttpHeaders headers = new HttpHeaders();

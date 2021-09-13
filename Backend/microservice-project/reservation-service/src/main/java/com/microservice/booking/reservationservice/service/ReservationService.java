@@ -29,6 +29,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ReservationService {
+  //TODO rezerwacja calej sali, moze jakos dodac UUID do rozrozniania?
+  //TODO delete tej rezerwacji?
 
   @Autowired private ReservationRepository reservationRepository;
   @Autowired ReservationMapper reservationMapper;

@@ -4,6 +4,7 @@ import com.microservice.booking.userservice.dataTransferObjects.UserCreateDTO;
 import com.microservice.booking.userservice.dataTransferObjects.UserRequestDTO;
 import com.microservice.booking.userservice.dataTransferObjects.UserResponseDTO;
 import com.microservice.booking.userservice.dataTransferObjects.UserResponseTokenDTO;
+import com.microservice.booking.userservice.domain.Role;
 import com.microservice.booking.userservice.entity.User;
 import com.microservice.booking.userservice.entity.UserDetails;
 import org.mapstruct.Mapper;
@@ -25,7 +26,7 @@ public interface UserMapper {
         User user = new User();
         user.setUsername(userCreateDTO.getUsername());
         user.setEmail(userCreateDTO.getEmail());
-        user.setRole(userCreateDTO.getRole());
+        user.setRole(Role.ROLE_USER);
         UserDetails userDetails = new UserDetails();
         userDetails.setName(userCreateDTO.getName());
         userDetails.setSurname(userCreateDTO.getSurname());

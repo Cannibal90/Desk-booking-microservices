@@ -29,8 +29,7 @@ public class UserController {
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<UserResponseDTO> getUserById(
       @PathVariable Long id, @LoggedUser AppUser appUser) {
-    OwnResourceValidator.validate(appUser, id);
-    return ResponseEntity.ok(userService.getUserById(id));
+    return ResponseEntity.ok(userService.getUserById(id, appUser));
   }
 
   @PostMapping("/user/register")
@@ -49,23 +48,20 @@ public class UserController {
       @RequestBody UserRequestDTO userRequestDTO,
       @PathVariable Long id,
       @LoggedUser AppUser appUser) {
-    OwnResourceValidator.validate(appUser, id);
-    return ResponseEntity.ok(userService.updateUser(userRequestDTO, id));
+    return ResponseEntity.ok(userService.updateUser(userRequestDTO, id, appUser));
   }
 
   @PutMapping("/user/password/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<UserResponseDTO> changePassword(
       @RequestBody UserPassDTO userPassDTO, @PathVariable Long id, @LoggedUser AppUser appUser) {
-    OwnResourceValidator.validate(appUser, id);
-    return ResponseEntity.ok(userService.changePassword(userPassDTO, id));
+    return ResponseEntity.ok(userService.changePassword(userPassDTO, id, appUser));
   }
 
   @DeleteMapping("/user/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<?> deleteUserById(@PathVariable Long id, @RequestHeader(value = "Authorization") String auth, @LoggedUser AppUser appUser) {
-    OwnResourceValidator.validate(appUser, id);
-    userService.deleteUser(id, auth);
+    userService.deleteUser(id, auth, appUser);
     return ResponseEntity.noContent().build();
   }
 
