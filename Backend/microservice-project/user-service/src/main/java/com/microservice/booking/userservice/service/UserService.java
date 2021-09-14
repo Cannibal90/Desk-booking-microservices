@@ -146,7 +146,6 @@ public class UserService {
   }
 
   public boolean checkUser(Long id) {
-    if (userRepository.findById(id).isEmpty()) return false;
-    return true;
+    return userRepository.findById(id).isPresent();
   }
 }

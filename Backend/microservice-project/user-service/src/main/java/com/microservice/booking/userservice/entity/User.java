@@ -4,6 +4,10 @@ import com.microservice.booking.userservice.domain.Role;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Getter
@@ -17,10 +21,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Size(min = 2, max = 15)
     private String username;
+
+    @NotBlank
     private String password;
+
+    @Size(min = 4, max = 50)
     private String email;
+
     @Enumerated(value = EnumType.STRING)
+    @NotNull
     private Role role;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
