@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import validators.LoggedUser;
 import web.AppUser;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,24 +42,23 @@ public class ReservationController {
   @PostMapping("/reserve")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<ReservationResponseDTO> createReservation(
-      @RequestBody ReservationRequestDTO reservationRequestDTO,
+      @Valid @RequestBody ReservationRequestDTO reservationRequestDTO,
       @RequestHeader(value = "Authorization") String auth,
       @LoggedUser AppUser appUser) {
     return ResponseEntity.status(HttpStatus.CREATED)
         .body(reservationService.createReservation(reservationRequestDTO, auth, appUser));
   }
 
-
   @PutMapping("/reserve/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<ReservationResponseDTO> updateReservation(
-      @RequestBody ReservationRequestDTO reservationRequestDTO,
+      @Valid @RequestBody ReservationRequestDTO reservationRequestDTO,
       @PathVariable Long id,
       @RequestHeader(value = "Authorization") String auth,
       @LoggedUser AppUser appUser) {
-    return ResponseEntity.ok(reservationService.updateReservation(reservationRequestDTO, id, auth, appUser));
+    return ResponseEntity.ok(
+        reservationService.updateReservation(reservationRequestDTO, id, auth, appUser));
   }
-
 
   @DeleteMapping("/reserve/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
@@ -70,7 +70,7 @@ public class ReservationController {
 
   @DeleteMapping("/reserve/user")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-  public ResponseEntity<?> deleteReservationsForUser(@LoggedUser AppUser appUser){
+  public ResponseEntity<?> deleteReservationsForUser(@LoggedUser AppUser appUser) {
     reservationService.deleteReservationsForUser(appUser);
     return ResponseEntity.noContent().build();
   }
