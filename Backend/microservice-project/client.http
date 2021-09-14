@@ -156,10 +156,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user",
-  "password": "user",
-  "email": "user@gmail.com",
-  "role": "ROLE_USER",
+  "username": "user1",
+  "password": "user1",
+  "email": "user1234@gmail.com",
   "name": "user1",
   "surname": "user2",
   "age": 20,
