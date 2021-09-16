@@ -3,6 +3,8 @@ package com.microservice.booking.reservationservice.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -18,7 +20,12 @@ public class Reservation {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE})
     private Durration durration;
 
+    @NotNull
+    @Min(1)
     private Long userId;
+
+    @NotNull
+    @Min(1)
     private Long stationId;
 
     @Override

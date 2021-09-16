@@ -4,6 +4,7 @@ import dataTransferObjects.ExceptionDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
@@ -27,6 +28,12 @@ public interface GlobalExceptionHandler {
     @ExceptionHandler(AccessDeniedException.class)
     default ResponseEntity<ExceptionDTO> onAccessDeniedException(Exception exception) {
         return createProperResponse(exception,HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    default ResponseEntity<ExceptionDTO> onMethodArgumentNotValidException(Exception exception) {
+        //TODO pomyslec nad wyciagnieciem default messages wszystkich
+        return createProperResponse(exception,HttpStatus.BAD_REQUEST);
     }
 
     default ResponseEntity<ExceptionDTO> createProperResponse(Exception exception, HttpStatus status) {

@@ -11,6 +11,7 @@ import validators.LoggedUser;
 import validators.OwnResourceValidator;
 import web.AppUser;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,19 +34,21 @@ public class UserController {
   }
 
   @PostMapping("/user/register")
-  public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserCreateDTO userCreateDTO) {
+  public ResponseEntity<UserResponseDTO> createUser(
+      @RequestBody @Valid UserCreateDTO userCreateDTO) {
     return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(userCreateDTO));
   }
 
   @PostMapping("user/login")
-  public ResponseEntity<UserResponseTokenDTO> authorizeUser(@RequestBody UserAuthDTO userAuthDTO) {
+  public ResponseEntity<UserResponseTokenDTO> authorizeUser(
+      @RequestBody @Valid UserAuthDTO userAuthDTO) {
     return ResponseEntity.ok(userService.authorizeUser(userAuthDTO));
   }
 
   @PutMapping("/user/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<UserResponseDTO> updateUser(
-      @RequestBody UserRequestDTO userRequestDTO,
+      @Valid @RequestBody UserRequestDTO userRequestDTO,
       @PathVariable Long id,
       @LoggedUser AppUser appUser) {
     return ResponseEntity.ok(userService.updateUser(userRequestDTO, id, appUser));
@@ -54,13 +57,18 @@ public class UserController {
   @PutMapping("/user/password/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
   public ResponseEntity<UserResponseDTO> changePassword(
-      @RequestBody UserPassDTO userPassDTO, @PathVariable Long id, @LoggedUser AppUser appUser) {
+      @Valid @RequestBody UserPassDTO userPassDTO,
+      @PathVariable Long id,
+      @LoggedUser AppUser appUser) {
     return ResponseEntity.ok(userService.changePassword(userPassDTO, id, appUser));
   }
 
   @DeleteMapping("/user/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-  public ResponseEntity<?> deleteUserById(@PathVariable Long id, @RequestHeader(value = "Authorization") String auth, @LoggedUser AppUser appUser) {
+  public ResponseEntity<?> deleteUserById(
+      @PathVariable Long id,
+      @RequestHeader(value = "Authorization") String auth,
+      @LoggedUser AppUser appUser) {
     userService.deleteUser(id, auth, appUser);
     return ResponseEntity.noContent().build();
   }

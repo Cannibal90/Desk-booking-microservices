@@ -3,6 +3,10 @@ package com.microservice.booking.laboratoryroomservice.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +20,13 @@ public class LaboratoryRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotNull
+    @Min(0)
     private int floor;
+
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String roomSupervisor;
 
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

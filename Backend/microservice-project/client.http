@@ -3,6 +3,7 @@
 GET http://localhost:8989/laboratory/room
 Accept: application/json
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
 
 ###
 
@@ -143,15 +144,21 @@ Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9s
 
 ###
 
+GET  http://localhost:8989/users/user
+Accept: application/json
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiIxIiwicm9sZSI6IlJPTEVfQURNSU4ifQ.mgKgsqvPBMxlSXPEcbcV-LKnVYsa7HF3_8m7UKuDspXXZn8vcvAhH4cDUbkvQK9fmdkCYmllrz_PCf406Dyb2g
+
+###
+
 POST  http://localhost:8989/users/user/register
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user",
-  "password": "user",
-  "email": "user@gmail.com",
-  "role": "ROLE_USER",
+  "username": "user1",
+  "password": "user1",
+  "email": "user1234@gmail.com",
   "name": "user1",
   "surname": "user2",
   "age": 20,
@@ -165,8 +172,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "admin"
+  "username": "user",
+  "password": "user"
 }
 
 ###
