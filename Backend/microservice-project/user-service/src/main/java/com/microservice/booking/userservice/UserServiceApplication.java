@@ -13,8 +13,17 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import web.TokenFilter;
 
+import java.util.Collections;
+
+@EnableSwagger2
 @SpringBootApplication
 @EnableEurekaClient
 public class UserServiceApplication {
@@ -36,5 +45,28 @@ public class UserServiceApplication {
   @Bean
   RestTemplate getRestTemplate() {
     return new RestTemplate();
+  }
+
+  @Bean
+  public Docket getDocket() {
+    return new Docket(DocumentationType.SWAGGER_2)
+            .select()
+            .apis(
+                    RequestHandlerSelectors.basePackage(
+                            "com.microservice.booking.userservice.controller"))
+            .build()
+            .apiInfo(getApiInfo());
+  }
+
+  private ApiInfo getApiInfo() {
+    return new ApiInfo(
+            "User API",
+            "User Microservice API",
+            "1.00",
+            "Terms of service",
+            new Contact("Krystian Kopeć", "URL", "222474@edu.p.lodz.pl"),
+            "My licence",
+            "my licence",
+            Collections.emptyList());
   }
 }
