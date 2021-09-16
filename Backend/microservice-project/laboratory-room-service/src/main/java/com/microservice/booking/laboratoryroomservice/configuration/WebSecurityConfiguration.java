@@ -13,23 +13,29 @@ import web.TokenFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    TokenFilter tokenFilter;
+  @Autowired TokenFilter tokenFilter;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable();
-        http.cors().and().authorizeRequests().antMatchers( "/swagger-resources/**",
-                "/swagger-ui.html", "/swagger-ui/**",
-                "/v3/api-docs",
-                "/v2/api-docs",
-                "/webjars/**").permitAll().and()
-//                .anyRequest().permitAll();
-                .authorizeRequests().anyRequest().authenticated();
+    http.csrf().disable();
+    http.cors()
+        .and()
+        .authorizeRequests()
+        .antMatchers(
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/swagger-ui/**",
+            "/v3/api-docs",
+            "/v2/api-docs",
+            "/webjars/**")
+        .permitAll()
+        .and()
+        .authorizeRequests()
+        .anyRequest()
+        .authenticated();
 
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
-    }
-
+    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+    http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
+  }
 }
