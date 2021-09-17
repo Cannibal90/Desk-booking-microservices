@@ -2,10 +2,7 @@ package com.microservice.booking.userservice.controller;
 
 import com.microservice.booking.userservice.dataTransferObjects.*;
 import com.microservice.booking.userservice.service.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +10,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 import validators.LoggedUser;
-import validators.OwnResourceValidator;
 import web.AppUser;
 
 import javax.validation.Valid;
