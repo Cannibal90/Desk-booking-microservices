@@ -30,6 +30,11 @@ public interface GlobalExceptionHandler {
         return createProperResponse(exception,HttpStatus.FORBIDDEN);
     }
 
+    @ExceptionHandler(ApiWrongParameterException.class)
+    default ResponseEntity<ExceptionDTO> onApiWrongParameterException(Exception exception) {
+        return createProperResponse(exception,HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     default ResponseEntity<ExceptionDTO> onMethodArgumentNotValidException(Exception exception) {
         //TODO pomyslec nad wyciagnieciem default messages wszystkich
