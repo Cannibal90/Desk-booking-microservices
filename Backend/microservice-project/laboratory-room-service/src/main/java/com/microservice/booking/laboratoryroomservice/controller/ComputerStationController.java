@@ -1,5 +1,6 @@
 package com.microservice.booking.laboratoryroomservice.controller;
 
+import com.microservice.booking.laboratoryroomservice.configuration.SwaggerConfiguration;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.ComputerStationRequestDTO;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.ComputerStationResponseDTO;
 import com.microservice.booking.laboratoryroomservice.service.ComputerStationService;
@@ -18,9 +19,10 @@ import springfox.documentation.annotations.ApiIgnore;
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(value = "Computer Station API")
+
 @RestController
 @RequestMapping("laboratory")
+@Api(tags = {SwaggerConfiguration.STATION_TAG})
 public class ComputerStationController {
 
   @Autowired private ComputerStationService computerStationService;

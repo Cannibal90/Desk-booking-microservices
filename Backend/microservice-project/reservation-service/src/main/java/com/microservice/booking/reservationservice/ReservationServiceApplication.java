@@ -34,26 +34,4 @@ public class ReservationServiceApplication {
     return new TokenFilter();
   }
 
-  @Bean
-  public Docket getDocket() {
-    return new Docket(DocumentationType.SWAGGER_2)
-            .select()
-            .apis(
-                    RequestHandlerSelectors.basePackage(
-                            "com.microservice.booking.reservationservice.controller"))
-            .build()
-            .apiInfo(getApiInfo());
-  }
-
-  private ApiInfo getApiInfo() {
-    return new ApiInfo(
-            "Reservation API",
-            "Reservation Microservice API",
-            "1.00",
-            "Terms of service",
-            new Contact("Krystian Kopeć", "URL", "222474@edu.p.lodz.pl"),
-            "My licence",
-            "my licence",
-            Collections.emptyList());
-  }
 }

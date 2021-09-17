@@ -1,8 +1,10 @@
 package com.microservice.booking.reservationservice.controller;
 
+import com.microservice.booking.reservationservice.configuration.SwaggerConfiguration;
 import com.microservice.booking.reservationservice.dataTransferObjects.ReservationRequestDTO;
 import com.microservice.booking.reservationservice.dataTransferObjects.ReservationResponseDTO;
 import com.microservice.booking.reservationservice.service.ReservationService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("reservation")
+@Api(tags = {SwaggerConfiguration.RESERVATION_TAG})
 public class ReservationController {
 
   @Autowired ReservationService reservationService;

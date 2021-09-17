@@ -1,5 +1,7 @@
 package com.microservice.booking.userservice.controller;
 
+
+import com.microservice.booking.userservice.configuration.SwaggerConfiguration;
 import com.microservice.booking.userservice.dataTransferObjects.*;
 import com.microservice.booking.userservice.service.UserService;
 import io.swagger.annotations.*;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("users")
+@Api(tags = {SwaggerConfiguration.USER_TAG})
 public class UserController {
 
   @Autowired UserService userService;

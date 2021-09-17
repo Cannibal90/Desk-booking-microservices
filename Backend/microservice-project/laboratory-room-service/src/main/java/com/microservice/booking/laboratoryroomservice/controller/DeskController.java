@@ -1,5 +1,6 @@
 package com.microservice.booking.laboratoryroomservice.controller;
 
+import com.microservice.booking.laboratoryroomservice.configuration.SwaggerConfiguration;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.ComputerStationResponseDTO;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.DeskRequestDTO;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.DeskResponseDTO;
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(value = "Desk API")
+
 @RestController
 @RequestMapping("laboratory")
+@Api(tags = {SwaggerConfiguration.DESK_TAG})
 public class DeskController {
 
   @Autowired private DeskService deskService;

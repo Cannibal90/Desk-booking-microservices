@@ -1,5 +1,6 @@
 package com.microservice.booking.laboratoryroomservice.controller;
 
+import com.microservice.booking.laboratoryroomservice.configuration.SwaggerConfiguration;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.ComputerStationResponseDTO;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.LaboratoryRoomRequestDTO;
 import com.microservice.booking.laboratoryroomservice.dataTransferObjects.LaboratoryRoomResponseDTO;
@@ -16,9 +17,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Api(value = "Laboratory room API")
+
 @RestController
 @RequestMapping("laboratory")
+@Api(tags = {SwaggerConfiguration.LABORATORY_TAG})
 public class LaboratoryRoomController {
 
   @Autowired private LaboratoryRoomService laboratoryRoomService;
