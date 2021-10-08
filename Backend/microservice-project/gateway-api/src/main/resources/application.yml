@@ -5,38 +5,48 @@ spring:
     name: GATEWAY-SERVICE
   main:
     allow-bean-definition-overriding: true
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
+      routes:
+        - id: laboratory-service
+          uri: lb://LABORATORY-ROOM-SERVICE
+          predicates:
+            - Path=/laboratory/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: laboratory-service
+                fallbackuri: forward:/laboratoryFallBack
+        - id: reservation-service
+          uri: lb://RESERVATION-SERVICE
+          predicates:
+            - Path=/reservation/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: reservation-service
+                fallbackuri: forward:/reservationFallBack
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: user-service
+                fallbackuri: forward:/userFallBack
 jwt:
   secret: BvPHGM8C0ia4uOuxxqPD5DTbWC9F9TWvPStp3pb7ARo0oK2mJ3pd3YG4lxA9i8bj6OTbadwezxgeEByY
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: laboratory-service
-#          uri: lb://LABORATORY-SERVICE
-#          predicates:
-#            - Path=/laboratory/**
-#          filters:
-#            - name: CircuitBreaker
-#              args:
-#                name: laboratory-service
-#                fallbackuri: forward:/laboratoryFallBack
-#        - id: reservation-service
-#          uri: lb://RESERVATION-SERVICE
-#          predicates:
-#            - Path=/reservation/**
-#          filters:
-#            - name: CircuitBreaker
-#              args:
-#                name: reservation-service
-#                fallbackuri: forward:/reservationFallBack
-#        - id: user-service
-#          uri: lb://USER-SERVICE
-#          predicates:
-#            - Path=/user/**
-#          filters:
-#            - name: CircuitBreaker
-#              args:
-#                name: user-service
-#                fallbackuri: forward:/userFallBack
+
+
 
 management:
   endpoints:
