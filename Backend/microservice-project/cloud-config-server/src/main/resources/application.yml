@@ -17,4 +17,4 @@ eureka:
     healthcheck:
       enabled: true
     service-url:
-      defaultZone: https://reservation-app-discovery.herokuapp.com/eureka
+      defaultZone: https://reservation-app-discovery.herokuapp.com
