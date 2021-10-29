@@ -54,6 +54,14 @@ public class ReservationService {
     return reservationMapper.toReservationResponse(reservation.get());
   }
 
+  public List<ReservationResponseDTO> getReservationByUserId(Long id) {
+    if (id <= 0) throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
+
+    var reservation = reservationRepository.findAllByUserId(id);
+
+    return reservationMapper.toReservationResponseList(reservation);
+  }
+
   public List<ReservationResponseDTO> getReservationsForComputerId(Long id, String auth) {
     if (!validateStation(id, auth))
       throw new ApiNoFoundResourceException(ExceptionConst.NOT_FOUND_COMPUTER);

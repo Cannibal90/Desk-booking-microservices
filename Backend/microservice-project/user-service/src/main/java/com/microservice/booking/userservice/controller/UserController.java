@@ -20,6 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("users")
 @Api(tags = {SwaggerConfiguration.USER_TAG})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
   @Autowired UserService userService;

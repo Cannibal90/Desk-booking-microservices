@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 
 @Data
 public class ComputerStationRequestDTO {
-    @Min(2)
+    @Min(1)
     @NotNull
     private int monitors;
 
@@ -43,7 +43,7 @@ public class ComputerStationRequestDTO {
     private int drive;
 
     @Enumerated(value = EnumType.STRING)
-    @NotBlank(message = "NetworkType nie może być puste")
+    @NotNull
     private NetworkType networkType;
 
     @NotNull

@@ -51,7 +51,7 @@ public class LaboratoryRoomService {
     }
 
     public LaboratoryRoomResponseDTO createLaboratoryRoom(LaboratoryRoomRequestDTO laboratoryRoomRequestDTO){
-        if(laboratoryRoomRequestDTO.getFloor() <= 0 || laboratoryRoomRequestDTO.getRoomSupervisor().isEmpty())
+        if(laboratoryRoomRequestDTO.getFloor() < 0 || laboratoryRoomRequestDTO.getRoomSupervisor().isEmpty())
             throw new ApiWrongParameterException(ExceptionConst.WRONG_PARAMETER);
 
         var room = laboratoryRoomMapper.toDomain(laboratoryRoomRequestDTO);
