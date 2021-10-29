@@ -44,6 +44,14 @@ public class ReservationController {
     return ResponseEntity.ok(reservationService.getReservationById(id));
   }
 
+  @ApiOperation(value = "Find reservation by User Id", response = ReservationResponseDTO.class, responseContainer = "List")
+  @GetMapping("/reserve/user/{id}")
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+  public ResponseEntity<List<ReservationResponseDTO>> getReservationByUserId(
+          @ApiParam(defaultValue = "1") @PathVariable Long id) {
+    return ResponseEntity.ok(reservationService.getReservationByUserId(id));
+  }
+
   @ApiOperation(
       value = "Find reservations for station with provided Id",
       response = ReservationResponseDTO.class,
@@ -86,7 +94,7 @@ public class ReservationController {
       response = ReservationResponseDTO.class)
   @DeleteMapping("/reserve/{id}")
   @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-  public ResponseEntity<ReservationResponseDTO> deleteReservationById(
+  public ResponseEntity<?> deleteReservationById(
       @ApiParam(defaultValue = "1") @PathVariable Long id,@ApiIgnore  @LoggedUser AppUser appUser) {
     reservationService.deleteReservation(id, appUser);
     return ResponseEntity.noContent().build();

@@ -172,8 +172,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "user",
-  "password": "user"
+  "username": "admin",
+  "password": "admin"
 }
 
 ###
@@ -251,10 +251,10 @@ Content-Type: application/json
 
 ###
 
-DELETE  http://localhost:8989/reservation/reserve/1
+DELETE  http://localhost:8989/reservation/reserve/5
 Accept: application/json
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpZCI6IjIiLCJyb2xlIjoiUk9MRV9VU0VSIn0.GOFGZhGkrd4exfOKc8NHulIx4NpW9m-hRyMOdsXuPXZhv9bZ9OYJHBX2KBIgtP88qz_zc_422QugY5AJm6I7xQ
+Authorization: eyJhbGciOiJIUzUxMiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI2Iiwicm9sZSI6IlJPTEVfQURNSU4ifQ.3ANFu8QdWB4k_2u8LU2sx9OHBZH7c_aQcdPJKdvZoH07PbmBDRUZDAPYy_hVs-GM7NEmvMQcnGo1zil2p6M6VQ
 
 ###
 

@@ -13,6 +13,7 @@ public class ReservationResponseDTO {
     private Long id;
     private DurrationResponseDTO durration;
     private Long StationId;
+    private Long userId;
 
     @Override
     public String toString() {
