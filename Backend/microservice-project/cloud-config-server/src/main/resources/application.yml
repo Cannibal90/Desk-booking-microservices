@@ -14,9 +14,7 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+    healthcheck:
+      enabled: true
     service-url:
-      defaultZone: https://reservation-app-discovery.herokuapp.com/
-  instance:
-    hostname: reservation-app-discovery.herokuapp.com
-
-
+      defaultZone: https://reservation-app-discovery.herokuapp.com/eureka
