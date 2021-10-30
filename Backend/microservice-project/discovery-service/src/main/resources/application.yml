@@ -1,9 +1,6 @@
-server:
-  port: 8761
-
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: https://reservation-app-discovery.herokuapp.com:8761/eureka
+server:
+  port: 8761
