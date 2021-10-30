@@ -1,21 +1,6 @@
-#eureka:
-#  client:
-#    register-with-eureka: false
-#    fetch-registry: false
-#server:
-#  port: 8761
-server:
-  port: ${PORT:5000}
-security:
-  user:
-    password: ${eureka.password}
-
 eureka:
-  instance:
-    hostname: localhost
   client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-  password: ${EUREKA_USER_PASSWORD:password}
+    register-with-eureka: false
+    fetch-registry: false
+server:
+  port: 8761
