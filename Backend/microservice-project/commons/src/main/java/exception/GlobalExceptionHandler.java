@@ -37,7 +37,6 @@ public interface GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     default ResponseEntity<ExceptionDTO> onMethodArgumentNotValidException(Exception exception) {
-        //TODO pomyslec nad wyciagnieciem default messages wszystkich
         return createProperResponse(exception,HttpStatus.BAD_REQUEST);
     }
 
